@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
 import { getSession, createSession } from '@/lib/auth';
-import { put } from '@vercel/blob';
 
 export async function POST(request: Request) {
     try {
@@ -20,11 +19,22 @@ export async function POST(request: Request) {
         let imageUrl = user.image_url; // Use existing if no new one
 
         if (image && image.size > 0) {
-            const blob = await put(image.name, image, {
-                access: 'public',
-                token: process.env.BLOB_READ_WRITE_TOKEN,
-            });
-            imageUrl = blob.url;
+            const fileName = `avatars/${user.userId}-${Date.now()}-${image.name}`;
+            const { data: uploadData, error: uploadError } = await supabase.storage
+                .from('ads')
+                .upload(fileName, image, {
+                    cacheControl: '3600',
+                    upsert: false, // Set to true if you want to overwrite existing files with the same name
+                });
+
+            if (!uploadError) {
+                const { data: { publicUrl } } = supabase.storage
+                    .from('ads')
+                    .getPublicUrl(fileName);
+                imageUrl = publicUrl;
+            } else {
+                console.error('Avatar Upload Error:', uploadError);
+            }
         }
 
         // Update Supabase (targeting 'users' table in public schema)

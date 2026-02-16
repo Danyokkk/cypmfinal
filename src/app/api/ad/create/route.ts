@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
-import { put } from '@vercel/blob';
 import { getSession } from '@/lib/auth';
 
 export async function POST(request: Request) {
@@ -24,12 +23,23 @@ export async function POST(request: Request) {
         const userId = (session as any).userId;
 
         let imageUrl = null;
-        if (imageFile) {
-            // Upload to Vercel Blob (keeping this for now)
-            const blob = await put(imageFile.name, imageFile, {
-                access: 'public',
-            });
-            imageUrl = blob.url;
+        if (imageFile && imageFile.size > 0) {
+            const fileName = `${userId}-${Date.now()}-${imageFile.name}`;
+            const { data: uploadData, error: uploadError } = await supabase.storage
+                .from('ads')
+                .upload(fileName, imageFile);
+
+            if (uploadError) {
+                console.error('Storage Upload Error:', uploadError);
+                return NextResponse.json({ error: 'Failed to upload image' }, { status: 500 });
+            }
+
+            // Get public URL
+            const { data: { publicUrl } } = supabase.storage
+                .from('ads')
+                .getPublicUrl(fileName);
+
+            imageUrl = publicUrl;
         }
 
         // Insert into Supabase
