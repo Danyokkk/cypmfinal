@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { query } from '@/lib/db';
+import { supabase } from '@/lib/supabase';
 
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
@@ -11,19 +11,26 @@ export async function GET(request: Request) {
 
     try {
         // Find user with this token
-        const result = await query('SELECT id FROM users WHERE verification_token = $1', [token]) as any;
+        const { data: user, error: findError } = await supabase
+            .from('users')
+            .select('id')
+            .eq('verification_token', token)
+            .single();
 
-        if (result.rows.length === 0) {
+        if (findError || !user) {
             return NextResponse.redirect(new URL('/login?error=Token not found or expired', request.url));
         }
 
-        const user = result.rows[0];
-
         // Mark as verified and clear token
-        await query(
-            'UPDATE users SET is_verified = TRUE, verification_token = NULL WHERE id = $1',
-            [user.id]
-        );
+        const { error: updateError } = await supabase
+            .from('users')
+            .update({
+                is_verified: true,
+                verification_token: null
+            })
+            .eq('id', user.id);
+
+        if (updateError) throw updateError;
 
         return NextResponse.redirect(new URL('/login?message=Account verified successfully! You can now log in.', request.url));
 
