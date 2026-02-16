@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌌 CYP Market - Premium Marketplace Concept
 
-## Getting Started
+<div align="center">
+  <img src="https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js" alt="Next.js" />
+  <img src="https://img.shields.io/badge/Supabase-Database-blueviolet?style=for-the-badge&logo=supabase" alt="Supabase" />
+  <img src="https://img.shields.io/badge/GSAP-Animations-green?style=for-the-badge&logo=greensock" alt="GSAP" />
+  <img src="https://img.shields.io/badge/TypeScript-Ready-blue?style=for-the-badge&logo=typescript" alt="TypeScript" />
+</div>
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### ✨ Overview
+**CYP Market** is a high-end, premium marketplace application designed with a **cosmic aesthetic** and smooth user experience. It features immersive animations, sleek glassmorphism components, and a robust full-stack integration with Supabase.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> This isn't just a marketplace; it's a visual journey.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 🚀 Key Features
 
-## Learn More
+- 🎭 **Cinematic Animations**: Interactive wavy background and hero section powered by GSAP.
+- 💎 **Glassmorphism UI**: High-end visual components with deep blur and glowing borders.
+- 🔐 **Supabase Auth**: Secure user registration, login, and session management.
+- 📦 **Smart Storage**: Integrated Supabase Storage for high-speed image uploads.
+- 📱 **Responsive Design**: Fully optimized for all screens with a mobile-first approach.
+- ⚡ **Turbocharged Performance**: Built on Next.js 15 for lightning-fast speeds.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🛠 Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Frontend | Backend | Tools |
+| :--- | :--- | :--- |
+| **Next.js 15** (App Router) | **Supabase** (Auth & DB) | **GSAP** (Magic) |
+| **Lucide React** (Icons) | **Supabase Storage** | **Vercel** (Hosting) |
+| **Vanilla CSS** (Custom Design) | **JWT / Jose** | **TypeScript** |
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 🎨 Visual Theme
+- **Background**: `#03030b` (Deep Space)
+- **Primary Color**: `#4973ff` (Electric Blue)
+- **Glass Effect**: Advanced Backdrop Filters & Glossy Overlays
+- **Typography**: `Montserrat` & `Unbounded` (Modern & Bold)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+### 👨‍💻 Developer
+Created with ❤️ by **[@daqxn](https://github.com/Danyokkk)**
+
+[![Telegram](https://img.shields.io/badge/Telegram-Contact%20Me-blue?style=for-the-badge&logo=telegram)](https://t.me/daqxn)
+
+---
+
+### ⚙️ Quick Start
+
+1. **Clone the stars**:
+   ```bash
+   git clone https://github.com/Danyokkk/cypmfinal.git
+   ```
+
+2. **Install fuel**:
+   ```bash
+   npm install
+   ```
+
+3. **Configure environment**:
+   Create a `.env.local` with your Supabase credentials:
+   ```env
+   NEXT_PUBLIC_SUPABASE_URL=your_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_key
+   ```
+
+4. **Blast off**:
+   ```bash
+   npm run dev
+   ```
+
+---
+
+<div align="center">
+  <p><i>"The market is yours. Own the galaxy."</i></p>
+  <sub>© 2026 CYP Market Project. Developed by @daqxn.</sub>
+</div>
