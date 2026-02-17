@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
 import { createSession } from '@/lib/auth';
-import { sign } from 'jose';
 
 // Define the name of the session cookie
 const SESSION_COOKIE_NAME = 'session';
